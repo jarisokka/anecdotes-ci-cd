@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import React, { useState } from 'react'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 
@@ -7,10 +8,10 @@ const Menu = () => {
   }
   return (
     <div>
-    <Link style={padding} to="/">anecdotes</Link>
-    <Link style={padding} to="/create">create new</Link>
-    <Link style={padding} to="/about">about</Link>
-   </div>
+      <Link style={padding} to="/">anecdotes</Link>
+      <Link style={padding} to="/create">create new</Link>
+      <Link style={padding} to="/about">about</Link>
+    </div>
   )
 }
 
@@ -20,21 +21,21 @@ const AnecdoteList = ({ anecdotes }) => (
     <ul>
       {anecdotes.map(anecdote => <li key={anecdote.id} >
         <Link to={`/anecdotes/${anecdote.id}`}>{anecdote.content}</Link>
-        </li>
-        )}
+      </li>
+      )}
     </ul>
   </div>
 )
 
 const Anecdote = ({ anecdote }) => {
-return(
-  <div>
-    <h2>{anecdote.content}</h2>
-    <div>has {anecdote.votes} votes</div>
+  return(
     <div>
+      <h2>{anecdote.content}</h2>
+      <div>has {anecdote.votes} votes</div>
+      <div>
       for more see {anecdote.info}
+      </div>
     </div>
-  </div>
   )
 }
 
@@ -47,7 +48,8 @@ const About = () => (
     <em>An anecdote is a brief, revealing account of an individual person or an incident.
       Occasionally humorous, anecdotes differ from jokes because their primary purpose is not simply to provoke laughter but to reveal a truth more general than the brief tale itself,
       such as to characterize a person by delineating a specific quirk or trait, to communicate an abstract idea about a person, place, or thing through the concrete details of a short narrative.
-      An anecdote is "a story with a point."</em>
+      An anecdote is "a story with a point."
+    </em>
 
     <p>Software engineering is full of excellent anecdotes, at this app you can find the best and add more.</p>
   </div>
@@ -138,24 +140,23 @@ const App = () => {
   }
 
   const notify = (message) => {
-    setNotification({ message})
+    setNotification({ message })
     setTimeout(() => setNotification({ message: null }), 10000)
   }
 
   const anecdoteById = (id) =>
     anecdotes.find(a => a.id === id)
 
-  const vote = (id) => {
-    const anecdote = anecdoteById(id)
+  //  const vote = (id) => {
+  //    const anecdote = anecdoteById(id)
 
-    const voted = {
-      ...anecdote,
-      votes: anecdote.votes + 1
-    }
-
-    setAnecdotes(anecdotes.map(a => a.id === id ? voted : a))
-  }
-
+  //    const voted = {
+  //      ...anecdote,
+  //      votes: anecdote.votes + 1
+  //    }
+  //
+  //    setAnecdotes(anecdotes.map(a => a.id === id ? voted : a))
+  //  }
 
   return (
     <div>
@@ -165,8 +166,8 @@ const App = () => {
           <Menu />
           <Notification notification={notification} />
           <Route exact path="/" render={() => <AnecdoteList anecdotes={anecdotes} />} />
-          <Route exact path="/anecdotes/:id" render={({ match }) => 
-              <Anecdote anecdote={anecdoteById(match.params.id)} /> } />
+          <Route exact path="/anecdotes/:id" render={({ match }) =>
+            <Anecdote anecdote={anecdoteById(match.params.id)} /> } />
           <Route exact path="/about" render={() => <About />} />
           <Route exact path="/create" render={() => <CreateNew addNew={addNew} />} />
           <Footer />
@@ -176,4 +177,4 @@ const App = () => {
   )
 }
 
-export default App;
+export default App
