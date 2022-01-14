@@ -140,23 +140,23 @@ const App = () => {
   }
 
   const notify = (message) => {
-    setNotification({ message})
+    setNotification({ message })
     setTimeout(() => setNotification({ message: null }), 10000)
   }
 
   const anecdoteById = (id) =>
     anecdotes.find(a => a.id === id)
 
-//  const vote = (id) => {
-//    const anecdote = anecdoteById(id)
+  //  const vote = (id) => {
+  //    const anecdote = anecdoteById(id)
 
-//    const voted = {
-//      ...anecdote,
-//      votes: anecdote.votes + 1
-//    }
-//
-//    setAnecdotes(anecdotes.map(a => a.id === id ? voted : a))
-//  }
+  //    const voted = {
+  //      ...anecdote,
+  //      votes: anecdote.votes + 1
+  //    }
+  //
+  //    setAnecdotes(anecdotes.map(a => a.id === id ? voted : a))
+  //  }
 
   return (
     <div>
@@ -166,7 +166,7 @@ const App = () => {
           <Menu />
           <Notification notification={notification} />
           <Route exact path="/" render={() => <AnecdoteList anecdotes={anecdotes} />} />
-          <Route exact path="/anecdotes/:id" render={({ match }) => 
+          <Route exact path="/anecdotes/:id" render={({ match }) =>
             <Anecdote anecdote={anecdoteById(match.params.id)} /> } />
           <Route exact path="/about" render={() => <About />} />
           <Route exact path="/create" render={() => <CreateNew addNew={addNew} />} />
