@@ -36,7 +36,4 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "jarianecdotes"
           heroku_email: "ig.jarisokka@gmail.com"
-          procfile: "web: npm run start"
-          healthcheck: "https://jarianecdotes.herokuapp.com"
-          delay: 5
-          rollbackonhealthcheckfailed: true
+          procfile: "web: npm start"
