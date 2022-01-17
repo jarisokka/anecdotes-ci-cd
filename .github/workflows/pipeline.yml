@@ -37,3 +37,7 @@ jobs:
           heroku_app_name: "jarianecdotes"
           heroku_email: "ig.jarisokka@gmail.com"
           procfile: "web: npm start"
+          healthcheck: "https://jarianecdotes.herokuapp.com"
+          checkstring: "Software anecdotes"
+          delay: 5
+          rollbackonhealthcheckfailed: true
