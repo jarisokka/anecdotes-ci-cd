@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - master
-      - dev
   pull_request:
     branches: [master]
     types: [opened, synchronize]
@@ -37,3 +36,13 @@ jobs:
           heroku_app_name: "jarianecdotes"
           heroku_email: "ig.jarisokka@gmail.com"
           procfile: "web: npm start"
+          healthcheck: "https://jarianecdotes.herokuapp.com"
+          delay: 5
+          rollbackonhealthcheckfailed: true
+      - uses: actions/checkout@v2
+      - name: Bump version and push tag
+        uses: anothrNick/github-tag-action@1.33.0
+        if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message, ' '), '#skip') }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DEFAULT_BUMP: patch
